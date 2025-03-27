@@ -1,0 +1,18 @@
+[[commands]]
+package = "go"
+
+[[commands]]
+package = "terraform"
+
+[[commands]]
+name = "cdktf"
+package = "nodePackages_latest.cdktf-cli"
+
+[[commands]]
+name ="oci"
+package = "oci-cli"
+
+[devshell]
+packages = [
+  "nodejs",
+]
