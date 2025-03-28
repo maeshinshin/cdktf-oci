@@ -1,16 +1,23 @@
 [[commands]]
-package = "go"
-
-[[commands]]
-package = "terraform"
-
-[[commands]]
 name = "cdktf"
 package = "nodePackages_latest.cdktf-cli"
 
 [[commands]]
-name ="oci"
+package = "go"
+
+[[commands]]
+package = "gotest"
+
+[[commands]]
+name = "make"
+package = "gnumake"
+
+[[commands]]
+name = "oci"
 package = "oci-cli"
+
+[[commands]]
+package = "terraform"
 
 [devshell]
 packages = [
