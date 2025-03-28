@@ -4,12 +4,14 @@ import (
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
 	"github.com/hashicorp/terraform-cdk-go/cdktf"
+
+	"github.com/maeshinshin/cdktf-oci/internal/provider"
 )
 
 func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
-	stack := cdktf.NewTerraformStack(scope, &id)
+	stack := cdktf.NewTerraformStack(scope, jsii.String(id))
 
-	// The code that defines your stack goes here
+	provider.SetOciProvider(stack)
 
 	return stack
 }
@@ -17,7 +19,7 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 func main() {
 	app := cdktf.NewApp(nil)
 
-	stack := NewMyStack(app, "tmp")
+	stack := NewMyStack(app, "cdktf-oci")
 	cdktf.NewCloudBackend(stack, &cdktf.CloudBackendConfig{
 		Hostname:     jsii.String("app.terraform.io"),
 		Organization: jsii.String("maesh-dev"),
