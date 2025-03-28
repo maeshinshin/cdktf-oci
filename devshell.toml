@@ -14,5 +14,5 @@ package = "oci-cli"
 
 [devshell]
 packages = [
-  "nodejs",
+  "nodejs_22",
 ]
