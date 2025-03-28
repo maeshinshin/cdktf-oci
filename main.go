@@ -5,6 +5,7 @@ import (
 	"github.com/aws/jsii-runtime-go"
 	"github.com/hashicorp/terraform-cdk-go/cdktf"
 
+	"github.com/maeshinshin/cdktf-oci/internal/compartment"
 	"github.com/maeshinshin/cdktf-oci/internal/provider"
 )
 
@@ -12,6 +13,7 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	stack := cdktf.NewTerraformStack(scope, jsii.String(id))
 
 	provider.SetOciProvider(stack)
+	compartment.CreateCompartment(stack)
 
 	return stack
 }
