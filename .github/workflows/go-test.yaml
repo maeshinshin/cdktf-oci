@@ -16,8 +16,12 @@ jobs:
       - name: Nix Flake
         run: nix flake check
 
+      - name: Debug Nix develop
+        run: nix develop --command which cdktf
+
       - name: cdktf get
-        run: nix develop --command "cdktf get"
+        run: nix develop --command cdktf get
+        continue-on-error: true
 
       - name: Test with the Go CLI
-        run: nix develop --command "make"
+        run: nix develop --command make
