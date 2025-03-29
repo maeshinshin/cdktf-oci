@@ -13,9 +13,6 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Nix Build
-        run: nix build
-
       - name: Nix Flake
         run: nix flake check
 
