@@ -18,14 +18,12 @@ type Config struct {
 	CompartmentDescription string
 }
 
-type Option func(*Config)
-
 func NewCompartment(stack constructs.Construct, options ...Option) *Compartment {
 	config := &Config{
 		CompartmentName:        defaultCompartmentName,
 		CompartmentDescription: defaultCompartmentDescription,
 		Config: util.Config{
-			FreeformTags: util.DefaultCompartmentTags,
+			FreeformTags: util.DefaultTags,
 		},
 	}
 

@@ -10,6 +10,6 @@ type Config struct {
 	FreeformTags FreeFormTags
 }
 
-var DefaultCompartmentTags = &map[string]*string{
+var DefaultTags = &map[string]*string{
 	"provided-by": jsii.String("cdktf-oci"),
 }

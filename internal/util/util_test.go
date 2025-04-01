@@ -10,9 +10,9 @@ import (
 )
 
 func TestDefaultCompartmentTags(t *testing.T) {
-	defaultTags := util.DefaultCompartmentTags
+	defaultTags := util.DefaultTags
 
-	assert.NotNil(t, defaultTags, "DefaultCompartmentTags should not be nil")
-	assert.Contains(t, *defaultTags, "provided-by", "DefaultCompartmentTags should contain 'provided-by'")
+	assert.NotNil(t, defaultTags, "DefaultTags should not be nil")
+	assert.Contains(t, *defaultTags, "provided-by", "DefaultTags should contain 'provided-by'")
 	assert.Equal(t, jsii.String("cdktf-oci"), (*defaultTags)["provided-by"], "Tag value should be 'cdktf-oci'")
 }
