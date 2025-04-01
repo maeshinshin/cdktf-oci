@@ -10,6 +10,6 @@ const (
 )
 
 var defaultCidrBlocks = &[]*string{
-	jsii.String("10.0.0.0/8"),
+	jsii.String("10.0.0.0/16"),
 	jsii.String("192.168.0.0/16"),
 }

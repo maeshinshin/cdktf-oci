@@ -26,7 +26,7 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				"DisplayName": "vcn-cdktf-oci",
 				"DnsLabel":    "vcncdktfoci",
 				"CidrBlocks": []string{
-					"10.0.0.0/8",
+					"10.0.0.0/16",
 					"192.168.0.0/16",
 				},
 				"FreeformTags": map[string]string{
@@ -40,7 +40,7 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				"DisplayName": "test",
 				"DnsLabel":    "vcncdktfoci",
 				"CidrBlocks": []string{
-					"10.0.0.0/8",
+					"10.0.0.0/16",
 					"192.168.0.0/16",
 				},
 				"FreeformTags": map[string]string{
@@ -57,7 +57,7 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				"DisplayName": "vcn-cdktf-oci",
 				"DnsLabel":    "test",
 				"CidrBlocks": []string{
-					"10.0.0.0/8",
+					"10.0.0.0/16",
 					"192.168.0.0/16",
 				},
 				"FreeformTags": map[string]string{
@@ -74,8 +74,8 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				"DisplayName": "vcn-cdktf-oci",
 				"DnsLabel":    "vcncdktfoci",
 				"CidrBlocks": []string{
-					"10.0.0.0/8",
-					"172.16.0.0/12",
+					"10.0.0.0/16",
+					"172.16.0.0/16",
 				},
 				"FreeformTags": map[string]string{
 					"provided-by": "cdktf-oci",
@@ -83,8 +83,8 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 			},
 			options: []Option{
 				WithCidrBlocks([]*string{
-					jsii.String("10.0.0.0/8"),
-					jsii.String("172.16.0.0/12"),
+					jsii.String("10.0.0.0/16"),
+					jsii.String("172.16.0.0/16"),
 				}),
 			},
 		},
@@ -94,8 +94,8 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				"DisplayName": "test",
 				"DnsLabel":    "test",
 				"CidrBlocks": []string{
-					"10.0.0.0/8",
-					"172.16.0.0/12",
+					"10.0.0.0/16",
+					"172.16.0.0/16",
 				},
 				"FreeformTags": map[string]string{
 					"provided-by": "cdktf-oci",
@@ -105,8 +105,8 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				WithDisplayName("test"),
 				WithDnsLabel("test"),
 				WithCidrBlocks([]*string{
-					jsii.String("10.0.0.0/8"),
-					jsii.String("172.16.0.0/12"),
+					jsii.String("10.0.0.0/16"),
+					jsii.String("172.16.0.0/16"),
 				}),
 			},
 		},

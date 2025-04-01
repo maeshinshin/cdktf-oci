@@ -7,13 +7,15 @@ import (
 
 	"github.com/maeshinshin/cdktf-oci/modules/compartment"
 	"github.com/maeshinshin/cdktf-oci/modules/provider"
+	"github.com/maeshinshin/cdktf-oci/modules/vcn"
 )
 
 func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	stack := cdktf.NewTerraformStack(scope, jsii.String(id))
 
 	provider.SetOciProvider(stack)
-	compartment.NewCompartment(stack)
+	compartment := compartment.NewCompartment(stack)
+	vcn.NewVcn(stack, compartment.Id())
 
 	return stack
 }
