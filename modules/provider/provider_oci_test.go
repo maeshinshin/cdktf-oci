@@ -19,9 +19,7 @@ func TestMain(m *testing.M) {
 func TestSetOciProvider(t *testing.T) {
 	synth := cdktf.Testing_Synth(stack, jsii.Bool(true))
 
-	assertion := cdktf.Testing_ToHaveProvider(synth, provider.OciProvider_TfResourceType())
-
-	if !*assertion {
+	if assertion := cdktf.Testing_ToHaveProvider(synth, provider.OciProvider_TfResourceType()); !*assertion {
 		t.Error("Assertion Failed")
 	}
 }

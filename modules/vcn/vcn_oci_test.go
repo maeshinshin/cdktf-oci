@@ -119,9 +119,7 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 			NewVcn(stack, compartment.Id(), tt.options...)
 			synth := cdktf.Testing_Synth(stack, jsii.Bool(false))
 
-			assertion := cdktf.Testing_ToHaveResourceWithProperties(synth, corevcn.CoreVcn_TfResourceType(), tt.properties)
-
-			if !*assertion {
+			if assertion := cdktf.Testing_ToHaveResourceWithProperties(synth, corevcn.CoreVcn_TfResourceType(), tt.properties); !*assertion {
 				t.Errorf("%s: Assertion Failed", tt.name)
 			}
 		})

@@ -77,9 +77,7 @@ func TestCreateCompartmentWithCorrectPropaties(t *testing.T) {
 			NewCompartment(stack, tt.options...)
 			synth := cdktf.Testing_Synth(stack, jsii.Bool(false))
 
-			assertion := cdktf.Testing_ToHaveResourceWithProperties(synth, identitycompartment.IdentityCompartment_TfResourceType(), tt.properties)
-
-			if !*assertion {
+			if assertion := cdktf.Testing_ToHaveResourceWithProperties(synth, identitycompartment.IdentityCompartment_TfResourceType(), tt.properties); !*assertion {
 				t.Errorf("%s: Assertion Failed", tt.name)
 			}
 		})
