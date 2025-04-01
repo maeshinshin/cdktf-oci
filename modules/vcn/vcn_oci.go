@@ -8,7 +8,9 @@ import (
 	"github.com/maeshinshin/cdktf-oci/internal/util"
 )
 
-type Vcn struct{}
+type Vcn struct {
+	corevcn.CoreVcn
+}
 
 type Config struct {
 	util.Config
@@ -17,7 +19,7 @@ type Config struct {
 	DnsLabel    string
 }
 
-func NewVcn(stack constructs.Construct, compartmentId *string, options ...Option) *corevcn.CoreVcn {
+func NewVcn(stack constructs.Construct, compartmentId *string, options ...Option) *Vcn {
 	config := &Config{
 		DisplayName: defaultVcnName,
 		DnsLabel:    defaultDnsLabel,
@@ -39,9 +41,9 @@ func NewVcn(stack constructs.Construct, compartmentId *string, options ...Option
 		FreeformTags:  config.FreeformTags,
 	}
 
-	vcn := corevcn.NewCoreVcn(stack, jsii.String("vcn-cdktf-oci"), vcnConfig)
+	vcn := &Vcn{corevcn.NewCoreVcn(stack, jsii.String("vcn-cdktf-oci"), vcnConfig)}
 
-	return &vcn
+	return vcn
 }
 
 type Option func(*Config)
