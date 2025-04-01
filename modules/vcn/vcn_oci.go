@@ -12,13 +12,15 @@ type Vcn struct{}
 
 type Config struct {
 	util.Config
-	CidrBlocks *[]*string
-	VcnName    string
+	CidrBlocks  *[]*string
+	DisplayName string
+	DnsLabel    string
 }
 
 func NewVcn(stack constructs.Construct, compartmentId *string, options ...Option) *corevcn.CoreVcn {
 	config := &Config{
-		VcnName: defaultVcnName,
+		DisplayName: defaultVcnName,
+		DnsLabel:    defaultDnsLabel,
 		Config: util.Config{
 			FreeformTags: util.DefaultTags,
 		},
@@ -32,8 +34,8 @@ func NewVcn(stack constructs.Construct, compartmentId *string, options ...Option
 	vcnConfig := &corevcn.CoreVcnConfig{
 		CompartmentId: compartmentId,
 		CidrBlocks:    config.CidrBlocks,
-		DisplayName:   jsii.String(config.VcnName),
-		DnsLabel:      jsii.String(config.VcnName),
+		DisplayName:   jsii.String(config.DisplayName),
+		DnsLabel:      jsii.String(config.DnsLabel),
 		FreeformTags:  config.FreeformTags,
 	}
 
@@ -44,9 +46,15 @@ func NewVcn(stack constructs.Construct, compartmentId *string, options ...Option
 
 type Option func(*Config)
 
-func WithVcnName(name string) Option {
+func WithDisplayName(name string) Option {
 	return func(c *Config) {
-		c.VcnName = name
+		c.DisplayName = name
+	}
+}
+
+func WithDnsLabel(label string) Option {
+	return func(c *Config) {
+		c.DnsLabel = label
 	}
 }
 

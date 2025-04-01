@@ -22,7 +22,7 @@ func TestCreateCompartmentWithCorrectPropaties(t *testing.T) {
 		{
 			name: "no options",
 			properties: &map[string]any{
-				"Name":        "compartment-cdktf-oci",
+				"Name":        "cdktf-oci",
 				"Description": "CDKTF OCI Compartment",
 				"FreeformTags": map[string]string{
 					"provided-by": "cdktf-oci",
@@ -45,7 +45,7 @@ func TestCreateCompartmentWithCorrectPropaties(t *testing.T) {
 		{
 			name: "with compartment description",
 			properties: &map[string]any{
-				"Name":        "compartment-cdktf-oci",
+				"Name":        "cdktf-oci",
 				"Description": "test",
 				"FreeformTags": map[string]string{
 					"provided-by": "cdktf-oci",

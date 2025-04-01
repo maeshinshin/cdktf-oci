@@ -5,7 +5,8 @@ import (
 )
 
 const (
-	defaultVcnName = "vcn-cdktf-oci"
+	defaultVcnName  = "vcn-cdktf-oci"
+	defaultDnsLabel = "vcncdktfoci"
 )
 
 var defaultCidrBlocks = &[]*string{

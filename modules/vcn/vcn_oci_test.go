@@ -24,7 +24,7 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 			name: "no options",
 			properties: &map[string]any{
 				"DisplayName": "vcn-cdktf-oci",
-				"DnsLabel":    "vcn-cdktf-oci",
+				"DnsLabel":    "vcncdktfoci",
 				"CidrBlocks": []string{
 					"10.0.0.0/8",
 					"192.168.0.0/16",
@@ -38,6 +38,23 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 			name: "with vcn name",
 			properties: &map[string]any{
 				"DisplayName": "test",
+				"DnsLabel":    "vcncdktfoci",
+				"CidrBlocks": []string{
+					"10.0.0.0/8",
+					"192.168.0.0/16",
+				},
+				"FreeformTags": map[string]string{
+					"provided-by": "cdktf-oci",
+				},
+			},
+			options: []Option{
+				WithDisplayName("test"),
+			},
+		},
+		{
+			name: "with dns label",
+			properties: &map[string]any{
+				"DisplayName": "vcn-cdktf-oci",
 				"DnsLabel":    "test",
 				"CidrBlocks": []string{
 					"10.0.0.0/8",
@@ -48,14 +65,14 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				},
 			},
 			options: []Option{
-				WithVcnName("test"),
+				WithDnsLabel("test"),
 			},
 		},
 		{
 			name: "with cidr blocks",
 			properties: &map[string]any{
 				"DisplayName": "vcn-cdktf-oci",
-				"DnsLabel":    "vcn-cdktf-oci",
+				"DnsLabel":    "vcncdktfoci",
 				"CidrBlocks": []string{
 					"10.0.0.0/8",
 					"172.16.0.0/12",
@@ -72,7 +89,7 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 			},
 		},
 		{
-			name: "with both options",
+			name: "with all options",
 			properties: &map[string]any{
 				"DisplayName": "test",
 				"DnsLabel":    "test",
@@ -85,7 +102,8 @@ func TestNewVcnWithCorrectPropaties(t *testing.T) {
 				},
 			},
 			options: []Option{
-				WithVcnName("test"),
+				WithDisplayName("test"),
+				WithDnsLabel("test"),
 				WithCidrBlocks([]*string{
 					jsii.String("10.0.0.0/8"),
 					jsii.String("172.16.0.0/12"),
