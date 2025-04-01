@@ -42,6 +42,8 @@ func NewCompartment(stack constructs.Construct, options ...Option) *Compartment 
 	return compartment
 }
 
+type Option func(*Config)
+
 func WithCompartmentName(name string) Option {
 	return func(c *Config) {
 		c.CompartmentName = name
@@ -54,11 +56,10 @@ func WithCompartmentDescription(description string) Option {
 	}
 }
 
-func FreeformTags(tags *map[string]*string) Option {
-	if tags == nil {
-		tags = util.DefaultCompartmentTags
-	}
+func AddFreeformTags(tags map[string]*string) Option {
 	return func(c *Config) {
-		c.FreeformTags = tags
+		for k, v := range tags {
+			(*(c.FreeformTags))[k] = v
+		}
 	}
 }

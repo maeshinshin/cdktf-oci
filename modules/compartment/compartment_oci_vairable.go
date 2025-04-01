@@ -1,6 +1,6 @@
 package compartment
 
 const (
-	defaultCompartmentName        = "cdktf-oci"
+	defaultCompartmentName        = "compartment-cdktf-oci"
 	defaultCompartmentDescription = "CDKTF OCI Compartment"
 )
