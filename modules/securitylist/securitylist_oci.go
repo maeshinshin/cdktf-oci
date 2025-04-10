@@ -10,6 +10,7 @@ import (
 type securitylist struct {
 	coresecuritylist.CoreSecurityList
 }
+
 type Config struct {
 	util.Config
 	DisplayName          string

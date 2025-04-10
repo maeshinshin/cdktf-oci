@@ -8,6 +8,7 @@ import (
 	"github.com/maeshinshin/cdktf-oci/modules/compartment"
 	"github.com/maeshinshin/cdktf-oci/modules/provider"
 	"github.com/maeshinshin/cdktf-oci/modules/securitylist"
+	"github.com/maeshinshin/cdktf-oci/modules/subnet"
 	"github.com/maeshinshin/cdktf-oci/modules/vcn"
 )
 
@@ -17,7 +18,8 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	provider.SetOciProvider(stack)
 	compartment := compartment.NewCompartment(stack)
 	vcn := vcn.NewVcn(stack, compartment.Id())
-	securitylist.NewPublicAndPrivateSecurityList(stack, compartment.Id(), vcn.Id(), nil, nil)
+	publicSecurityList, privateSecurityList := securitylist.NewPublicAndPrivateSecurityList(stack, compartment.Id(), vcn.Id(), nil, nil)
+	subnet.NewPublicAndPrivateSubnet(stack, compartment.Id(), vcn.Id(), "", "", []*string{privateSecurityList.Id()}, []*string{publicSecurityList.Id()}, nil, nil)
 
 	return stack
 }
