@@ -69,3 +69,7 @@ apply the provisioning plan
 ```bash
 cdktf apply
 ```
+
+## Environment
+
+![figure](/image/figure.png)
