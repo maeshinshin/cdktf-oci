@@ -4,6 +4,8 @@
 .terraform
 cdktf.out
 cdktf.log
+cdktf.json*
+
 *terraform.*.tfstate*
 generated
 

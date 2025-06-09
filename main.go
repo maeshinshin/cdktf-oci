@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/terraform-cdk-go/cdktf"
 
 	"github.com/maeshinshin/cdktf-oci/modules/compartment"
+	"github.com/maeshinshin/cdktf-oci/modules/objectstorage"
 	"github.com/maeshinshin/cdktf-oci/modules/provider"
 	"github.com/maeshinshin/cdktf-oci/modules/securitylist"
 	"github.com/maeshinshin/cdktf-oci/modules/subnet"
@@ -20,6 +21,7 @@ func NewMyStack(scope constructs.Construct, id string) cdktf.TerraformStack {
 	vcn := vcn.NewVcn(stack, compartment.Id())
 	publicSecurityList, privateSecurityList := securitylist.NewPublicAndPrivateSecurityList(stack, compartment.Id(), vcn.Id(), nil, nil)
 	subnet.NewPublicAndPrivateSubnet(stack, compartment.Id(), vcn.Id(), "", "", []*string{privateSecurityList.Id()}, []*string{publicSecurityList.Id()}, nil, nil)
+	objectstorage.NewTalosObjectstorage(stack, compartment.Id(), nil, nil)
 
 	return stack
 }
