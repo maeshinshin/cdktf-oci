@@ -14,17 +14,14 @@ type objectstorage struct {
 type Config struct {
 	util.Config
 	Name        string
-	Namespace   string
 	Access_Type string
 }
 
 func NewTalosObjectstorage(stack constructs.Construct, compartmentId *string, optionsForArm []Option, optionsForAmd []Option) (*objectstorage, *objectstorage) {
-	// amdTalosObjectstorage := NewAmdTalosObjectstorage(stack, compartmentId, vcnId, optionsForPublic...)
-
 	armTalosObjectstorage := NewArmTalosObjectstorage(stack, compartmentId, optionsForArm...)
+	amdTalosObjectstorage := NewAmdTalosObjectstorage(stack, compartmentId, optionsForAmd...)
 
-	// return armTalosObjectstorage, amdTalosObjectstorage
-	return armTalosObjectstorage, nil
+	return armTalosObjectstorage, amdTalosObjectstorage
 }
 
 type Option func(*Config)
@@ -32,12 +29,6 @@ type Option func(*Config)
 func WithName(name string) Option {
 	return func(c *Config) {
 		c.Name = name
-	}
-}
-
-func WithNamespace(namespace string) Option {
-	return func(c *Config) {
-		c.Namespace = namespace
 	}
 }
 

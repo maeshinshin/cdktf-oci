@@ -8,11 +8,11 @@ import (
 	"github.com/maeshinshin/cdktf-oci/internal/util"
 )
 
-func NewArmTalosObjectstorage(stack constructs.Construct, compartmentId *string, options ...Option) *objectstorage {
+func NewAmdTalosObjectstorage(stack constructs.Construct, compartmentId *string, options ...Option) *objectstorage {
 	namespace := util.GetTerraformVariable(stack, "ObjectStorageNamespace")
 
 	config := &Config{
-		Name: defaultTalosArmObjectstorageName,
+		Name: defaultTalosAmdObjectstorageName,
 		Config: util.Config{
 			FreeformTags: util.DefaultTags,
 		},
@@ -26,12 +26,12 @@ func NewArmTalosObjectstorage(stack constructs.Construct, compartmentId *string,
 	objectstorageConfig := &objectstoragebucket.ObjectstorageBucketConfig{
 		CompartmentId: compartmentId,
 		Name:          jsii.String(config.Name),
-		FreeformTags:  config.FreeformTags,
 		Namespace:     (*namespace).StringValue(),
+		FreeformTags:  config.FreeformTags,
 		AccessType:    jsii.String(config.Access_Type),
 	}
 
-	objectstorage := &objectstorage{objectstoragebucket.NewObjectstorageBucket(stack, jsii.String("objectstorage-talos-arm-cdktf-oci"), objectstorageConfig)}
+	objectstorage := &objectstorage{objectstoragebucket.NewObjectstorageBucket(stack, jsii.String("objectstorage-talos-amd-cdktf-oci"), objectstorageConfig)}
 
 	return objectstorage
 }

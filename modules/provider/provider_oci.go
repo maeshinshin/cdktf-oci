@@ -3,55 +3,30 @@ package provider
 import (
 	"github.com/aws/constructs-go/constructs/v10"
 	"github.com/aws/jsii-runtime-go"
-	"github.com/hashicorp/terraform-cdk-go/cdktf"
 
 	"github.com/maeshinshin/cdktf-oci/generated/oracle/oci/provider"
+	"github.com/maeshinshin/cdktf-oci/internal/util"
 )
 
 func SetOciProvider(stack constructs.Construct) {
-	fingerprint := cdktf.NewTerraformVariable(stack, jsii.String("FingerPrint"), &cdktf.TerraformVariableConfig{
-		Type:      jsii.String("string"),
-		Default:   jsii.String(""),
-		Sensitive: jsii.Bool(true),
-	})
+	fingerprint := util.GetTerraformVariable(stack, "FingerPrint")
 
-	privateKey := cdktf.NewTerraformVariable(stack, jsii.String("PrivateKey"), &cdktf.TerraformVariableConfig{
-		Type:      jsii.String("string"),
-		Default:   jsii.String(""),
-		Sensitive: jsii.Bool(true),
-	})
+	privateKey := util.GetTerraformVariable(stack, "PrivateKey")
 
-	privateKeyPassword := cdktf.NewTerraformVariable(stack, jsii.String("PrivateKeyPassword"), &cdktf.TerraformVariableConfig{
-		Type:      jsii.String("string"),
-		Default:   jsii.String(""),
-		Sensitive: jsii.Bool(true),
-	})
+	privateKeyPassword := util.GetTerraformVariable(stack, "PrivateKeyPassword")
 
-	region := cdktf.NewTerraformVariable(stack, jsii.String("Region"), &cdktf.TerraformVariableConfig{
-		Type:      jsii.String("string"),
-		Default:   jsii.String(""),
-		Sensitive: jsii.Bool(true),
-	})
+	region := util.GetTerraformVariable(stack, "Region")
+	tenancyOcid := util.GetTerraformVariable(stack, "TenancyOcid")
 
-	tenancyOcid := cdktf.NewTerraformVariable(stack, jsii.String("TenancyOcid"), &cdktf.TerraformVariableConfig{
-		Type:      jsii.String("string"),
-		Default:   jsii.String(""),
-		Sensitive: jsii.Bool(true),
-	})
-
-	userOcid := cdktf.NewTerraformVariable(stack, jsii.String("UserOcid"), &cdktf.TerraformVariableConfig{
-		Type:      jsii.String("string"),
-		Default:   jsii.String(""),
-		Sensitive: jsii.Bool(true),
-	})
+	userOcid := util.GetTerraformVariable(stack, "UserOcid")
 
 	ociProviderConfig := &provider.OciProviderConfig{
-		Fingerprint:        fingerprint.StringValue(),
-		PrivateKey:         privateKey.StringValue(),
-		PrivateKeyPassword: privateKeyPassword.StringValue(),
-		Region:             region.StringValue(),
-		TenancyOcid:        tenancyOcid.StringValue(),
-		UserOcid:           userOcid.StringValue(),
+		Fingerprint:        (*fingerprint).StringValue(),
+		PrivateKey:         (*privateKey).StringValue(),
+		PrivateKeyPassword: (*privateKeyPassword).StringValue(),
+		Region:             (*region).StringValue(),
+		TenancyOcid:        (*tenancyOcid).StringValue(),
+		UserOcid:           (*userOcid).StringValue(),
 	}
 
 	provider.NewOciProvider(stack, jsii.String("oci"), ociProviderConfig)
